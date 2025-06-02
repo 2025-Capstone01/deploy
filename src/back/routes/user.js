@@ -34,8 +34,8 @@ router.post('/', async (req, res) => {
         });
 
     } catch (err) {
-        console.error('저장 실패:', err);
-        res.status(500).send('저장 실패');
+        console.error('저장 실패:', err.message);
+        return res.status(500).json({ error: err.message });
     }
 });
 
