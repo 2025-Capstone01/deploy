@@ -44,6 +44,7 @@ router.get('/id', async (req, res) => {
     const { email } = req.query;
 
     try {
+        console.log("🔍 요청받은 이메일:", email);  // ✅ 打印查询参数
         const [rows] = await pool.query(
             'SELECT user_id FROM user WHERE email = ?',
             [email]
@@ -55,7 +56,7 @@ router.get('/id', async (req, res) => {
 
         res.json({ user_id: rows[0].user_id });
     } catch (err) {
-        console.error('user_id 조회 실패:', err);
+        console.error('user_id 조회 실패:',  err.stack);
         res.status(500).json({ message: '서버 오류' });
     }
 });
